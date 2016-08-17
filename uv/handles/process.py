@@ -434,3 +434,11 @@ class Process(handle.UVHandle):
         code = lib.uv_process_kill(self.uv_process, signum)
         if code != error.StatusCodes.SUCCESS:
             raise error.UVError(code)
+
+    @staticmethod
+    def spawn(loop, args, exit_callback, stdio):
+        return Process(args, loop=loop, on_exit=exit_callback, stdin=stdio[0].stream, stdout=stdio[1].stream, stderr=stdio[2].stream)
+
+class StdIO():
+  def __init__(self, stream, flags):
+      self.stream = stream

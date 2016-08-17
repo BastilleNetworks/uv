@@ -157,7 +157,7 @@ class Signal(handle.UVHandle):
             raise error.ClosedHandleError()
         return self.uv_signal.signum
 
-    def start(self, signum, on_signal=None):
+    def start(self, on_signal, signum):
         """
         Start listening for the given signal.
 

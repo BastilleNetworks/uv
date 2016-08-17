@@ -38,6 +38,7 @@ from .metadata import __version__, __author__, __email__, __project__
 
 from .library import version as uv_version
 
+from . import errno
 from .error import UVError, ClosedHandleError, ClosedLoopError, StatusCodes
 from .handle import UVHandle
 from .loop import RunModes, Loop
@@ -51,9 +52,9 @@ from .handles.async import Async
 from .handles.check import Check
 from .handles.idle import Idle
 from .handles.pipe import PipeConnectRequest, Pipe
-from .handles.poll import PollEvent, Poll
+from .handles.poll import PollEvent, Poll, UV_READABLE, UV_WRITABLE
 from .handles.prepare import Prepare
-from .handles.process import CreatePipe, PIPE, ProcessFlags, Process
+from .handles.process import CreatePipe, PIPE, ProcessFlags, Process, StdIO
 from .handles.signal import Signals, Signal
 from .handles.stream import ShutdownRequest, WriteRequest, ConnectRequest, UVStream
 from .handles.tcp import TCPFlags, TCPConnectRequest, TCP

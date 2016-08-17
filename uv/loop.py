@@ -225,7 +225,7 @@ class Loop(object):
     _default = None
 
     @classmethod
-    def get_default(cls, instantiate=True, **keywords):
+    def default_loop(cls, instantiate=True, **keywords):
         """
         Get the default (across multiple threads) event loop. Note that
         although this returns the same loop across multiple threads

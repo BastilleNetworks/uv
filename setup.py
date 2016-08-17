@@ -61,7 +61,7 @@ WIN32_PYTHON27_PATHS = [_path_1, _path_2]
 LICENSE = 'License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)'
 
 
-with open(os.path.join(__dir__, 'uv', 'metadata.py'), 'rb') as metadata_py:
+with open(os.path.join(__dir__, 'pyuv', 'metadata.py'), 'rb') as metadata_py:
     metadata_source = metadata_py.read().decode('utf-8')
 
 match = re.search(r'__version__ = \'(.+?)\'', metadata_source)
@@ -222,7 +222,7 @@ class BuildExtensions(build_ext):
             if sys.platform == 'win32':
                 msg = 'using a system provided libuv is not supported on Windows'
                 raise DistutilsError(msg)
-            extension.libraries.append('uv')
+            extension.libraries.append('pyuv')
         else:
             self.use_bundled_libuv()
 
@@ -292,14 +292,14 @@ if bdist_msi is not None:
     cmdclass['bdist_msi'] = WindowsMSI
 
 
-setup(name='uv',
+setup(name='pyuv',
       version=version,
       description='Python libuv CFFI Bindings',
       long_description=long_description,
       author='Maximilian Köhl',
       author_email='mail@koehlma.de',
       url='https://github.com/koehlma/uv',
-      packages=['uv', 'uvcffi'],
+      packages=['pyuv', 'uvcffi'],
       cmdclass=cmdclass,
       ext_modules=ext_modules,
       requires=['cffi'],

@@ -145,7 +145,7 @@ class Timer(handle.UVHandle):
         if self.repeat:
             self.set_pending()
 
-    def start(self, timeout, repeat=0, on_timeout=None):
+    def start(self, on_timeout, timeout, repeat):
         """
         Start the timer. If `timeout` is zero, the callback fires on
         the next event loop iteration. If repeat is non-zero, the

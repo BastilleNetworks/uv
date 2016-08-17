@@ -889,7 +889,7 @@ class ClosedStructureError(UnsupportedOperation):
         super(ClosedStructureError, self).__init__(StatusCodes.EINVAL, message)
 
 
-class ClosedHandleError(ClosedStructureError):
+class HandleClosedError(ClosedStructureError):
     """ Invalid operation on closed handle. """
 
 

@@ -38,6 +38,9 @@ class PollEvent(common.Enumeration):
     :type: uv.PollEvent
     """
 
+UV_READABLE = PollEvent.READABLE
+UV_WRITABLE = PollEvent.WRITABLE
+
 
 @base.handle_callback('uv_poll_cb')
 def poll_callback(poll_handle, status, events):
@@ -107,7 +110,7 @@ class Poll(handle.UVHandle):
     uv_handle_type = 'uv_poll_t*'
     uv_handle_init = lib.cross_uv_poll_init_socket
 
-    def __init__(self, fd, loop=None, on_event=None):
+    def __init__(self, loop, fd, on_event=None):
         super(Poll, self).__init__(loop, (fd, ))
         self.uv_poll = self.base_handle.uv_object
         self.fd = fd

@@ -461,7 +461,7 @@ class UVStream(handle.UVHandle):
         """
         return ShutdownRequest(self, on_shutdown)
 
-    def listen(self, backlog=5, on_connection=None):
+    def listen(self, on_connection=None, backlog=5):
         """
         Start listening for incoming connections.
 
@@ -489,7 +489,7 @@ class UVStream(handle.UVHandle):
         if code != error.StatusCodes.SUCCESS:
             raise error.UVError(code)
 
-    def read_start(self, on_read=None):
+    def start_read(self, on_read=None):
         """
         :raises uv.UVError:
             error while start reading data from the stream
@@ -508,7 +508,7 @@ class UVStream(handle.UVHandle):
             raise error.UVError(code)
         self.set_pending()
 
-    def read_stop(self):
+    def stop_read(self):
         """
         :raises uv.UVError:
             error while stop reading data from the stream
@@ -520,7 +520,7 @@ class UVStream(handle.UVHandle):
             raise error.UVError(code)
         self.clear_pending()
 
-    def write(self, buffers, send_stream=None, on_write=None):
+    def write(self, buffers, on_write=None, send_stream=None):
         """
         :type buffers:
             tuple[bytes] | list[bytes] | bytes

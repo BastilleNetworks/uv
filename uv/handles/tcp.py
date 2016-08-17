@@ -100,7 +100,7 @@ class TCP(stream.UVStream):
     uv_handle_type = 'uv_tcp_t*'
     uv_handle_init = lib.uv_tcp_init_ex
 
-    def __init__(self, flags=0, loop=None, on_read=None, on_connection=None):
+    def __init__(self, loop=None, flags=0, on_read=None, on_connection=None):
         super(TCP, self).__init__(loop, False, (flags, ), on_read, on_connection)
         self.uv_tcp = self.base_handle.uv_object
 
@@ -315,3 +315,18 @@ class TCP(stream.UVStream):
                 return socket.AF_INET6
         except error.UVError:
             pass
+
+    def getsockname(self):
+        return self.sockname
+
+    def getpeername(self):
+        return self.peername
+
+    def nodelay(self, enabled):
+        self.set_nodelay(enabled)
+
+    def keepalive(self, enabled, delay):
+        self.set_keepalive(enabled, delay)
+
+    def simultaneous_accepts(self, enabled):
+        self.set_simultaneous_accepts(enabled)

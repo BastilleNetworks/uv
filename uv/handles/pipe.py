@@ -87,7 +87,7 @@ class Pipe(stream.UVStream):
     uv_handle_type = 'uv_pipe_t*'
     uv_handle_init = lib.uv_pipe_init
 
-    def __init__(self, ipc=False, loop=None, on_read=None, on_connection=None):
+    def __init__(self, loop=None, ipc=False, on_read=None, on_connection=None):
         super(Pipe, self).__init__(loop, ipc, (int(ipc), ), on_read, on_connection)
         self.uv_pipe = self.base_handle.uv_object
 
